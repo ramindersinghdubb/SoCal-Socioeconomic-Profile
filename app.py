@@ -331,7 +331,7 @@ app.layout = html.Div([
                                          display   = 'show',
                                         ),
                              dcc.Graph(id     = 'map',
-                                       config = {'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d', 'resetview'], 'displaylogo': False},
+                                       config = {'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d', 'resetview'], 'displaylogo': False, 'displayModeBar': False},
                                        clear_on_unhover = True
                                       ),
                              dcc.Tooltip(id        = 'tooltip',
