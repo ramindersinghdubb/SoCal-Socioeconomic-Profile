@@ -3,7 +3,7 @@ import dash
 from dash import dcc, html, clientside_callback, ClientsideFunction
 from dash.dependencies import Output, Input, State
 import dash_bootstrap_components as dbc
-from dash_extensions import Purify
+from feffery_markdown_components import FefferyMarkdown
 
 import pandas as pd
 import numpy as np
@@ -347,7 +347,10 @@ app.layout = html.Div([
                      className = 'fmt-button'
                     ),
             dbc.Offcanvas(
-                Purify(id = "purify"),
+                FefferyMarkdown(id          = "help-text",
+                                renderHtml  = True,
+                                className  = 'offcanvas-body'
+                               ),
                 id      = "offcanvas",
                 title   = html.H3("Help"),
                 is_open = False,
@@ -562,14 +565,11 @@ app.clientside_callback("""
             The <span style='color:#85BCC7;'>employment-to-population ratio</span> (or <span style='color:#85BCC7;'>EPOP</span>) is defined as the proportion of working-aged (16 and older) persons who are
             working.<br><br>
             Per the 2024 American Community Survey Design & Methodology Report, questions regarding labor force status are designed to identify the following: <br><br>
-            
-            <blockquote style='border-left: 2px solid #B1BED2; padding-left: 10px;'>
-            (1) people who worked at any time during the reference week; <br><br>
-            (2) people on temporary layoff who were available for work; <br><br>
-            (3) people who did not work during the reference week but who had jobs or businesses from which they were temporarily absent (excluding layoffs); <br><br>
-            (4) people who did not work but were available during the reference week, and who were looking for work during the last four weeks; and <br><br>
-            (5) people not in the labor force. </blockquote> <br><br>
-            
+            1) people who worked at any time during the reference week; <br>
+            2) people on temporary layoff who were available for work; <br>
+            3) people who did not work during the reference week but who had jobs or businesses from which they were temporarily absent (excluding layoffs); <br>
+            4) people who did not work but were available during the reference week, and who were looking for work during the last four weeks; and <br>
+            5) people not in the labor force. <br><br>
             <span style='font-size:22px;'>Sources</span><br>
             <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
         }
@@ -577,13 +577,10 @@ app.clientside_callback("""
         if ( selected_measure == 'FoodStamps' ) {
             return `<span style='font-size:22px;'>Food Stamps</span></u><br>
             Per the 2024 American Community Survey Design & Methodology Report, <br><br>
-
-            <blockquote style='border-left: 2px solid #B1BED2; padding-left: 10px;'>
-            The Food and Nutrition Service of the U.S. Department of Agriculture (USDA) administers the <span style='color:#85BCC7;'>Supplemental Nutrition Assistance (Food Stamp) Program (SNAP)</span> through state and local welfare offices.
+            "the Food and Nutrition Service of the U.S. Department of Agriculture (USDA) administers the <span style='color:#85BCC7;'>Supplemental Nutrition Assistance (Food Stamp) Program (SNAP)</span> through state and local welfare offices.
             This program is the major national income-support program for which all low-income and low-resource households, regardless of household characteristics, are eligible.
-            This question asks if anyone in the households received SNAP benefits at any time during the 12-month period before the ACS interview.
-            </blockquote> <br><br>
-            
+            This question asks if anyone in the households received SNAP benefits at any time during the 12-month period before the ACS interview."
+            <br><br>
             <span style='font-size:22px;'>Sources</span><br>
             <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
         }
@@ -591,34 +588,28 @@ app.clientside_callback("""
         if ( selected_measure == 'HealthInsuranceCoverage' ) {
             return `<span style='font-size:22px;'>Health Insurance Coverage</span></u><br>
             Per the 2024 American Community Survey Design & Methodology Report, <br><br>
-
-            <blockquote style='border-left: 2px solid #B1BED2; padding-left: 10px;'>
-            [The insured and uninsured population is assessed] by asking about coverage through an employer, direct purchase from an insurance company, Medicare, Medicaid or
+            "[the insured and uninsured population is assessed] by asking about coverage through an employer, direct purchase from an insurance company, Medicare, Medicaid or
             other government-assistance health plans, military health care, Veterans Affairs health care, Indian Health Service, or other types of health insurance or coverage
-            plans. Plans that cover only one type of health care (such as dental plans) or plans that only cover a person in case of an accident or disability are not included.
-            </blockquote> <br><br>
-            
+            plans. Plans that cover only one type of health care (such as dental plans) or plans that only cover a person in case of an accident or disability are not included."
+            <br><br>
             <span style='font-size:22px;'>Sources</span><br>
             <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
         }
         
         if ( selected_measure == 'HouseholdIncome' ) {
             return `<span style='font-size:22px;'>Household Income</span></u><br>
-            <span style='color:#85BCC7;'>Income</span> is defined as <br><br>
-            <blockquote style='border-left: 2px solid #B1BED2; padding-left: 10px;'>
+            <span style='color:#85BCC7;'>Income</span> is defined as <br>
             "the sum of the amounts reported separately for wage or salary income; net self-employment income; interest, dividends, or net rental or royalty income,
             or income from estates and trusts; social security or railroad retirement income; Supplemental Security Income; public assistance or welfare payments;
             retirement, survivor, or disability pensions; and all other income. Income is reported for the past 12 months from the date of the interview. The estimates
             are inflation-adjusted using the Consumer Price Index" (2024 American Community Survey Design & Methodology Report, Chapter 6). 
-            </blockquote> <br>
-            
-            To adjust for changes in cost of living, adjustment to 2023 Consumer Price Index ("constant dollars") was conducted for data years earlier than 2023 through the <u><a href='https://www.bls.gov/cpi/additional-resources/chained-cpi.htm';>Bureau of Labor Statistics' Chained Consumer Price Index for All Urban Consumers (C-CPI-U)</a></u> series.
+            <br><br>
+            To adjust for changes in cost of living, adjustment to 2023 Consumer Price Index ("constant dollars") was conducted for data years earlier than 2023 through the
+            <u><a href='https://www.bls.gov/cpi/additional-resources/chained-cpi.htm'>Bureau of Labor Statistics Chained Consumer Price Index for All Urban Consumers (C-CPI-U)</a></u> series.
             <br><br>
             <span style='font-size:22px;'>Sources</span><br>
-            <ul>
-            <li><u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u></li>
-            <li><u><a href='https://www.census.gov/topics/income-poverty/income/guidance/current-vs-constant-dollars.html'>Current versus Constant (or Real) Dollars</a></u></li>
-            </ul>`;
+            1) <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u><br>
+            2) <u><a href='https://www.census.gov/topics/income-poverty/income/guidance/current-vs-constant-dollars.html'>Current versus Constant (or Real) Dollars</a></u>`;
         }
         
         if ( selected_measure == 'HousingUnitsandOccupancy' ) {
@@ -627,18 +618,14 @@ app.clientside_callback("""
             in whose name the home is owned, being bought, or rented and who is listed as 'Person 1' on the survey questionnaire.
             If there is no such person in the household, any adult household member 15 and older can be designated" (2024 American Community Survey Design &
             Methodology Report, Chapter 6).
-            
-            <br><br>
-            
-            A property's <span style='color:#85BCC7;'>value</span> is computed based on <br><br>
-            <blockquote style='border-left: 2px solid #B1BED2; padding-left: 10px;'>
+            <br><br><br>
+            A property's <span style='color:#85BCC7;'>value</span> is computed based on: <br>
             "the respondent’s estimate of how much the property (house and lot, mobile home and lot, or condominium unit) would sell for.
             The information is collected for [housing units] that are owned or being bought and for vacant [housing units] that are for sale.
             If the house or mobile home is owned or being bought, but the land on which it sits is not, the respondent is asked to estimate the
             combined value of the house or mobile home and the land. For vacant [housing units], value is defined as the price asked for the
             property. This information is obtained from real estate agents, property managers, or neighbors" (ibis.). 
-            </blockquote> <br>
-            
+            <br><br>
             <span style='font-size:22px;'>Sources</span><br>
             <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
         }
@@ -655,28 +642,23 @@ app.clientside_callback("""
             return `<span style='font-size:22px;'>Work Commute Estimates</span></u><br>
             <span style='color:#85BCC7;'>Commute methods to work</span> refer to "the principal mode of travel or type of conveyance
             that the worker usually used to get from home to work during the reference week" (2024 American Community Survey Design & Methodology Report, Chapter 6).<br><br>
-            
             <span style='color:#85BCC7;'>Departure times</span> refer to "the time of day that the respondent usually
             left home to go to work during the reference week" (ibis.).<br><br>
-            
             <span style='color:#85BCC7;'>Travel times</span> to work refer to the number of minutes it usually takes the respondent to get from home to
             work during the reference week (ibis.).<br><br>
-
             <span style='color:#85BCC7;'>Vehicles available</span> show
-            <br><br>
-            <blockquote style='border-left: 2px solid #B1BED2; padding-left: 10px;'>
+            <br>
             "the number of passenger cars, vans, and pickup or panel trucks of one-ton capacity or less kept at home and available
             for the use of household members. Vehicles rented or leased for one month or more, company vehicles, and police and
             government vehicles are included if kept at home and used for nonbusiness purposes. Dismantled or immobile vehicles 
             are excluded, as are vehicles kept at home but used only for business purposes" (ibis.). 
-            </blockquote> <br>
-            
+            <br><br>
             <span style='font-size:22px;'>Sources</span><br>
             <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
         }
     }
     """,
-    Output("purify", "html"),
+    Output("help-text", "markdownStr"),
     Input('measure-dropdown', 'value')
 )
 
