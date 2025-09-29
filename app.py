@@ -66,7 +66,8 @@ measures_labels_list = ["Contract Rent",
                         "Poverty Estimates",
                         "Work Commute Estimates",
                         "Working Hours",
-                        "Other Economic Measures"
+                        "Other Economic Measures",
+                        "Population Estimates"
                        ]
 measures_values_list = ['ContractRent',
                         'RentBurden',
@@ -78,7 +79,8 @@ measures_values_list = ['ContractRent',
                         'Poverty',
                         'TransportationMethodstoWork',
                         'WorkHours',
-                        'CharacteristicsoftheEconomicPopulation'
+                        'CharacteristicsoftheEconomicPopulation',
+                        'Population'
                        ]
 measures_tuple = zip(measures_labels_list, measures_values_list)
 measures_options = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in measures_tuple]
@@ -283,6 +285,26 @@ for place in LA_County_values:
     dummy_tuple = zip(dummy_labels_list, dummy_values_list)
     dummy_dict['CharacteristicsoftheEconomicPopulation'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
 
+
+    
+    # -- Population -- #
+    dummy_labels_list = ['Population by Age',
+                         'Population by Race',
+                         'Hispanic/Latino Population',
+                         'Asian Population',
+                         'American Indian and Alaska Native Population',
+                         'Native Hawaiian and Pacific Islander Population',
+                        ]
+    dummy_values_list = [f'Population_{place}_AGE_LONG',
+                         f'Population_{place}_RACE_LONG',
+                         f'Population_{place}_HISPANICLATINO_LONG',
+                         f'Population_{place}_ASIAN_LONG',
+                         f'Population_{place}_INDIGENOUS_LONG',
+                         f'Population_{place}_NATIVEHAWAIIANPACIFICISLANDER_LONG'
+                        ]
+    dummy_tuple = zip(dummy_labels_list, dummy_values_list)
+    dummy_dict['Population'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
+
     
     submeasures_dict[place] = dummy_dict
 
@@ -323,6 +345,9 @@ discrete_color_dict['Oranges'] = px.colors.sequential.Oranges[0:7] + ['rgb(149, 
 discrete_color_dict['GnBu'] = px.colors.sequential.GnBu
 discrete_color_dict['Pastel2'] = px.colors.qualitative.Pastel2 + ['rgb(179,205,227)']
 discrete_color_dict['Set3'] = px.colors.qualitative.Set3 + ['rgb(251,180,174)']
+discrete_color_dict['Blues'] = ['rgb(247,251,255)', 'rgb(222, 238, 255)', 'rgb(197, 226, 255)', 'rgb(172, 213, 255)', 'rgb(147, 201, 255)',
+                                'rgb(121, 188, 255)', 'rgb(96, 176, 255)', 'rgb(71, 163, 255)', 'rgb(46, 151, 255)', 'rgb(21, 138, 255)',
+                                'rgb(0, 125, 251)', 'rgb(0, 113, 226)', 'rgb(0, 100, 201)']
 
 
 # Colorblind-safe colors: https://colorbrewer2.org/
@@ -744,6 +769,25 @@ app.clientside_callback("""
             <span style='font-size:22px;'>Sources</span><br>
             <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
         }
+
+        if ( selected_measure == 'Population' ) {
+            return `<span style='font-size:22px;'>Population Estimates</span></u><br>
+            <span style='color:#85BCC7;'>Race</span> refers to the socio-political category that individuals report themselves as. Note that race
+            is not rooted in science or biology. For instance, the fact that 'Black' (a color) and 'Asian' (a geographical point of
+            reference) reflect popular contemporary understandings of race and racial taxonomies within the United States metropole are in no way
+            symptomatic of any scientific consensus. Further, note too the vagueness of 'Asian': could it refer to individuals hailing from Iran just
+            as much as others hailing from Laos, given their respective landmasses are located within the Asian continent, or does 'Asian' refer to a
+            popular understanding of individuals from landmasses close to and/or bordering the eastern Pacific seaboard?<br><br>
+            For these, and other reasons, population estimates segmented by race should instead be motivated by a socio-political-economic understanding
+            of the ways in which certain peoples who have understood themselves distinctively as a community (or, loosely, "population") have come to be
+            situated.<br><br>
+            For purposes of demonstration, Punjab is taken as a point of reference. In what ways has im/migration policy affected the presence
+            of members of the Punjabi community? How has economic precarity in Punjab affected Punjabi individuals situated along the metropole and their
+            relationships with both Punjab and the metropole? In what ways have existing community groups and structures (e.g. <i>gurdwaras</i>) made
+            certain places more favorable to Punjabi individuals and the making of the Punjabi community?<br><br>
+            <span style='font-size:22px;'>Sources</span><br>
+            <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
+        }
     }
     """,
     Output("help-text", "markdownStr"),
@@ -1097,6 +1141,71 @@ app.clientside_callback(
             var colorbar_title_text = '<b>Civilian<br>Employed<br>Workers</b>';
             var colorbar_tickprefix = '';
             var colorbar_ticksuffix = '';
+            
+            var zmin;
+            var zmax;
+            var zauto_bool = true;
+        }
+
+        if (selected_measure == 'Population') {
+            var z_array = my_array.map(({ESTIMATE_SEXANDAGE_Totalpopulation}) => ESTIMATE_SEXANDAGE_Totalpopulation);
+            var strings = my_array.map(function(item) {
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_SEXANDAGE_Totalpopulation'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
+            });
+            
+            var colorscale_color = color_dict['deep'];
+            var colorbar_title_text = '<b>Total<br>Population</b>';
+            var colorbar_tickprefix = '';
+            var colorbar_ticksuffix = '';
+
+            if (selected_submeasure != undefined && selected_submeasure.includes("_HISPANICLATINO_")){
+                var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_HispanicorLatinoofanyrace}) => ESTIMATE_RACE_Totalpopulation_HispanicorLatinoofanyrace);
+                var strings = my_array.map(function(item) {
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Hispanic/Latino Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_HispanicorLatinoofanyrace'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
+                });
+                var colorscale_color = color_dict['deep'];
+                var colorbar_title_text = '<b>Total<br>Hispanic<br>and Latino<br>Population</b>';
+                var colorbar_tickprefix = '';
+                var colorbar_ticksuffix = '';
+            }
+
+            if (selected_submeasure != undefined && selected_submeasure.includes("_ASIAN_")){
+                var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_Onerace_Asian}) => ESTIMATE_RACE_Totalpopulation_Onerace_Asian);
+                var strings = my_array.map(function(item) {
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Asian Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_Onerace_Asian'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
+                });
+                var colorscale_color = color_dict['deep'];
+                var colorbar_title_text = '<b>Total<br>Asian<br>Population</b>';
+                var colorbar_tickprefix = '';
+                var colorbar_ticksuffix = '';
+            }
+
+            if (selected_submeasure != undefined && selected_submeasure.includes("_INDIGENOUS_")){
+                var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_Onerace_AmericanIndianandAlaskaNative}) => ESTIMATE_RACE_Totalpopulation_Onerace_AmericanIndianandAlaskaNative);
+                var strings = my_array.map(function(item) {
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    + "<span style='font-family: Trebuchet MS, sans-serif;'>Total American Indian and Alaska Native Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_Onerace_AmericanIndianandAlaskaNative'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
+                });
+                var colorscale_color = color_dict['deep'];
+                var colorbar_title_text = '<b>Total<br>American<br>Indian and<br>Alaska<br>Native<br>Population</b>';
+                var colorbar_tickprefix = '';
+                var colorbar_ticksuffix = '';
+            }
+
+            if (selected_submeasure != undefined && selected_submeasure.includes("_NATIVEHAWAIIANPACIFICISLANDER_")){
+                var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_Onerace_NativeHawaiianandOtherPacificIslander}) => ESTIMATE_RACE_Totalpopulation_Onerace_NativeHawaiianandOtherPacificIslander);
+                var strings = my_array.map(function(item) {
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Native Hawaiian and Pacific Islander Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_Onerace_NativeHawaiianandOtherPacificIslander'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
+                });
+                var colorscale_color = color_dict['deep'];
+                var colorbar_title_text = '<b>Total Native<br>Hawaiian<br>and Pacific<br>Islander<br>Population</b>';
+                var colorbar_tickprefix = '';
+                var colorbar_ticksuffix = '';
+            }
             
             var zmin;
             var zmax;
@@ -2562,6 +2671,94 @@ app.clientside_callback(
                         var x_tickvals = ['Private wage and salaried workers', 'Government workers', 'Self-employed in own/unincorporated business workers', 'Unpaid family workers'];
                         var x_ticktext = ['Private wage and<br>salaried workers', 'Government<br>workers', 'Self-employed<br>workers', 'Unpaid family<br>workers'];
                         var xlabels_size = 12;
+                        var xaxis_standoff = 20;
+                    }
+
+                    var data = [{
+                        'type': 'bar',
+                        'x': x_array,
+                        'y': y_array,
+                        'text': text,
+                        'textposition': 'auto',
+                        'marker': {'color': color_array,
+                                   'line': {'color': '#111111', 'width': 1.5}
+                                   },
+                        'textfont': {'shadow': '1px 1px 20px #FEF9F3'},
+                        'hoverinfo': 'none',
+                        'hovertemplate': null
+                    }];
+                    
+                }
+
+                if ( selected_submeasure.startsWith("Population")  ) {
+                    var y_array = my_array.map(({value}) => value);
+                    var xlabels_size;
+                    var x_ticktext;
+                    var x_tickvals;
+                    
+                    var text = y_array.map(function(item) {
+                        return "<b style='color:#112A46; font-size:12px;'>" + item + "</b>";
+                    });
+
+                    var yaxis_title_text = '<b>Population</b>';
+                    var yaxis_tickprefix = '';
+                    var yaxis_ticksuffix = '';
+
+                    if (selected_submeasure.includes("RACE")){
+                        var title_text = `<b>Population by Race, ${selected_year}</b>`;
+                        var xaxis_title_text = '<b>Racial Categories</b>';
+                        var color_array = discrete_color_dict['Pastel2'];
+                        
+                        var x_tickvals = ['White', 'Black or African American', 'American Indian and Alaska Native', 'Asian', 'Native Hawaiian and Other Pacific Islander', 'Some other race', 'Two or more races', 'Hispanic or Latino (of any race)', 'White alone, not Hispanic or Latino'];
+                        var x_ticktext = ['White', 'Black or<br>African American', 'American Indian<br>and Alaska Native', 'Asian', 'Native Hawaiian and<br>Other Pacific Islander', 'Some other race', 'Two or more races', 'Hispanic or Latino<br>(of any race)', 'White alone, not<br>Hispanic or Latino'];
+                        var xlabels_size = 9;
+                    
+                    } else if (selected_submeasure.includes("ASIAN")){
+                        var title_text = `<b>Asian Population, ${selected_year}</b>`;
+                        var xaxis_title_text = '<b>Asian Racial Categories</b>';
+                        var color_array = discrete_color_dict['Pastel2'];
+                        
+                        var x_tickvals = ['Asian Indian', 'Chinese', 'Filipino', 'Japanese', 'Korean', 'Vietnamese', 'Other Asian'];
+                        var x_ticktext = ['Asian<br>Indian', 'Chinese', 'Filipino', 'Japanese', 'Korean', 'Vietnamese', 'Other<br>Asian'];
+                        var xlabels_size = 13;
+                        var xaxis_standoff = 20;
+                    
+                    } else if (selected_submeasure.includes("INDIGENOUS")){
+                        var title_text = `<b>American Indian and Alaska Native Population, ${selected_year}</b>`;
+                        var color_array = discrete_color_dict['Pastel2'];
+                        
+                        var x_tickvals = ['Cherokee', 'Chippewa', 'Navajo', 'Sioux', 'Aztec', 'Blackfeet Tribe of the Blackfeet Indian Reservation of Montana', 'Maya', 'Native Village of Barrow Inupiat Traditional Government', 'Navajo Nation', 'Nome Eskimo Community', 'Other American Indian and Alaska Native'];
+                        var x_ticktext = ['Cherokee', 'Chippewa', 'Navajo', 'Sioux', 'Aztec', 'Blackfeet Tribe of the<br>Blackfeet Indian<br>Reservation of Montana', 'Maya', 'Native Village of<br>Barrow Inupiat<br>Traditional Government', 'Navajo Nation', 'Nome Eskimo<br>Community', 'Other American Indian<br>and Alaska Native'];
+                        var xlabels_size = 9;
+                        
+                    } else if (selected_submeasure.includes("HISPANICLATINO")){
+                        var title_text = `<b>Hispanic/Latino Population, ${selected_year}</b>`;
+                        var xaxis_title_text = '<b>Hispanic/Latino Racial Categories</b>';
+                        var color_array = discrete_color_dict['Pastel2'];
+                        
+                        var x_tickvals = ['Mexican', 'Puerto Rican', 'Cuban', 'Other Hispanic or Latino'];
+                        var x_ticktext = ['Mexican', 'Puerto Rican', 'Cuban', 'Other Hispanic/<br>Latino'];
+                        var xlabels_size = 14;
+                        var xaxis_standoff = 20;
+                    
+                    } else if (selected_submeasure.includes("NATIVEHAWAIIANPACIFICISLANDER")){
+                        var title_text = `<b>Native Hawaiian and Pacific Islander Population, ${selected_year}</b>`;
+                        var xaxis_title_text = '<b>Native Hawaiian and Pacific Islander Racial Categories</b>';
+                        var color_array = discrete_color_dict['Pastel2'];
+                        
+                        var x_tickvals = ['Native Hawaiian', 'Guamanian or Chamorro', 'Samoan', 'Other Pacific Islander', 'Chamorro', 'Other Native Hawaiian or Pacific Islander'];
+                        var x_ticktext = ['Native Hawaiian', 'Guamanian or<br>Chamorro', 'Samoan', 'Other Pacific<br>Islander', 'Chamorro', 'Other Native Hawaiian<br>or Pacific Islander'];
+                        var xlabels_size = 12;
+                        var xaxis_standoff = 17;
+                        
+                    } else if (selected_submeasure.includes("_AGE_")){
+                        var title_text = `<b>Population by Age Demographic, ${selected_year}</b>`;
+                        var xaxis_title_text = '<b>Age Demographics</b>';
+                        var color_array = discrete_color_dict['Blues'];
+                        
+                        var x_tickvals = ['Under 5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'];
+                        var x_ticktext = ['Under 5', '5-9', '10-14', '15-19', '20-24', '25-34', '35-44', '45-54', '55-59', '60-64', '65-74', '75-84', '85+'];
+                        var xlabels_size = 10;
                         var xaxis_standoff = 20;
                     }
 
