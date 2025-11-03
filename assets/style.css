@@ -33,6 +33,13 @@ h3 {
   padding-right: 5.0%;
 }
 
+.fmt-button {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 5.0%;
+  padding-right: 5.0%;
+}
+
 .fmt-checklist {
   padding-top: 30px;
   padding-bottom: 10px;
@@ -109,9 +116,6 @@ h3 {
 }
 
 
-
-
-
 .dash-graph--pending {
   visibility: hidden;
 }
@@ -125,3 +129,31 @@ h3 {
   display: none;
   opacity: 0;
 }
+
+
+
+.offcanvas-header, .offcanvas-body {
+  background-color: #191919;
+}
+
+.offcanvas-body {
+  font-family: Gill Sans, sans-serif;
+  font-weight: normal;
+  display: flex;
+  color: #FAFAFA;
+}
+
+
+
+[class*="primary"] {
+  color: #FFFFFF; /* Affects text color */
+  font-family: Gill Sans, sans-serif;
+  font-weight: normal;
+  /* background-color: #B1BED2!important; */ /* Affects background color */
+  border-color: #B1BED2!important;
+}
+[class*="primary"]:hover {
+    background-color: #2B506F!important;
+}
+
+
