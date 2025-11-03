@@ -67,7 +67,8 @@ measures_labels_list = ["Contract Rent",
                         "Work Commute Estimates",
                         "Working Hours",
                         "Other Economic Measures",
-                        "Population Estimates"
+                        "Population Estimates",
+                        # "Educational Attainment"
                        ]
 measures_values_list = ['ContractRent',
                         'RentBurden',
@@ -80,7 +81,8 @@ measures_values_list = ['ContractRent',
                         'TransportationMethodstoWork',
                         'WorkHours',
                         'CharacteristicsoftheEconomicPopulation',
-                        'Population'
+                        'Population',
+                        # 'Education'
                        ]
 measures_tuple = zip(measures_labels_list, measures_values_list)
 measures_options = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in measures_tuple]
@@ -220,23 +222,41 @@ submeasures_dict['HousingUnitsandOccupancy'] = [{'label': html.Span([i], style =
 
 
 # -- Poverty -- #
-dummy_labels_list = ['Distribution of Poverty by Race',
+dummy_labels_list = ['Poverty by Race',
+                     'Poverty by Sex (Coming Soon!)',
+                     'Poverty by Age (Coming Soon!',
+                     'Poverty by Employment (Coming Soon!)',
                     ]
 dummy_values_list = [f'Poverty_RACE_LONG',
+                     f'Poverty_SEX_LONG',
+                     f'Poverty_AGE_LONG',
+                     f'Poverty_EMPLOYMENT_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['Poverty'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
+
+disabled_values = ['Poverty_SEX_LONG', 'Poverty_AGE_LONG', 'Poverty_EMPLOYMENT_LONG']
+submeasures_dict['Poverty']  = [dict(item, **{'disabled': True}) if item['value'] in disabled_values else dict(item) for item in submeasures_dict['Poverty'] ]
 
 
 
 
 # -- Health Insurance Coverage -- #
-dummy_labels_list = ['Insurance Coverage by Race',
+dummy_labels_list = ['Coverage by Race',
+                     'Coverage by Sex (Coming Soon!)',
+                     'Coverage by Citizenship Status (Coming Soon!)',
+                     'Coverage by Educational Status (Coming Soon!)'
                     ]
 dummy_values_list = [f'HealthInsuranceCoverage_RACE_LONG',
+                     f'HealthInsuranceCoverage_SEX_LONG',
+                     f'HealthInsuranceCoverage_CITIZEN_LONG',
+                     f'HealthInsuranceCoverage_EDUCATIONALSTATUS_LONG',
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['HealthInsuranceCoverage'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
+
+disabled_values = ['HealthInsuranceCoverage_CITIZEN_LONG', 'HealthInsuranceCoverage_SEX_LONG', 'HealthInsuranceCoverage_EDUCATIONALSTATUS_LONG']
+submeasures_dict['HealthInsuranceCoverage']  = [dict(item, **{'disabled': True}) if item['value'] in disabled_values else dict(item) for item in submeasures_dict['HealthInsuranceCoverage'] ]
 
 
 
@@ -276,17 +296,23 @@ dummy_labels_list = ['Civilian Workers by Industry',
                      'Civilian Workers by Occupation',
                      'Civilian Workers by Sector',
                      'Median Earnings for All Workers by Industry',
-                     'Median Earnings for Full-Time Workers by Industry'
+                     'Median Earnings for Full-Time Workers by Industry',
+                     'Gender Pay Gap, Full-Time Workers (Coming Soon!)',
+                     'Gender Pay Gap, All Workers (Coming Soon!)'
                     ]
 dummy_values_list = [f'CharacteristicsoftheEconomicPopulation_INDUSTRY_LONG',
                      f'CharacteristicsoftheEconomicPopulation_OCCUPATION_LONG',
                      f'CharacteristicsoftheEconomicPopulation_CLASS_LONG',
                      f'CharacteristicsoftheEconomicPopulation_INDUSTRYEARNINGS_LONG',
-                     f'CharacteristicsoftheEconomicPopulation_INDUSTRYFULLEARNINGS_LONG'
+                     f'CharacteristicsoftheEconomicPopulation_INDUSTRYFULLEARNINGS_LONG',
+                     f'CharacteristicsoftheEconomicPopulation_GENDERPAYGAPFULL_LONG',
+                     f'CharacteristicsoftheEconomicPopulation_GENDERPAYGAPALL_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['CharacteristicsoftheEconomicPopulation'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
 
+disabled_values = ['CharacteristicsoftheEconomicPopulation_GENDERPAYGAPFULL_LONG', 'CharacteristicsoftheEconomicPopulation_GENDERPAYGAPALL_LONG']
+submeasures_dict['CharacteristicsoftheEconomicPopulation']  = [dict(item, **{'disabled': True}) if item['value'] in disabled_values else dict(item) for item in submeasures_dict['CharacteristicsoftheEconomicPopulation'] ]
 
 
 # -- Population -- #
@@ -306,6 +332,25 @@ dummy_values_list = [f'Population_AGE_LONG',
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['Population'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
+
+
+
+# -- Education -- #
+dummy_labels_list = ['Attainment by Race (Coming Soon!)',
+                     'Attainment by Citizenship (Coming Soon!)',
+                     'Attainment by Age (Coming Soon!)',
+                    ]
+dummy_values_list = [f'Education_RACE_LONG',
+                     f'Education_CITIZENSHIP_LONG',
+                     f'Education_AGE_LONG',
+                    ]
+dummy_tuple = zip(dummy_labels_list, dummy_values_list)
+submeasures_dict['Education'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
+
+disabled_values = ['Education_RACE_LONG', 'Education_CITIZENSHIP_LONG', 'Education_AGE_LONG']
+submeasures_dict['Education']  = [dict(item, **{'disabled': True}) if item['value'] in disabled_values else dict(item) for item in submeasures_dict['Education'] ]
+
+
 
 
 
