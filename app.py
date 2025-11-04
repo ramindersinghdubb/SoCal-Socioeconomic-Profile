@@ -68,7 +68,7 @@ measures_labels_list = ["Contract Rent",
                         "Working Hours",
                         "Other Economic Measures",
                         "Population Estimates",
-                        # "Educational Attainment"
+                        "Educational Attainment"
                        ]
 measures_values_list = ['ContractRent',
                         'RentBurden',
@@ -82,7 +82,7 @@ measures_values_list = ['ContractRent',
                         'WorkHours',
                         'CharacteristicsoftheEconomicPopulation',
                         'Population',
-                        # 'Education'
+                        'Education'
                        ]
 measures_tuple = zip(measures_labels_list, measures_values_list)
 measures_options = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in measures_tuple]
@@ -105,8 +105,8 @@ submeasures_dict = dict()
 dummy_labels_list = ['Distribution of Contract Rents',
                      'Contract Rents Over Time'
                     ]
-dummy_values_list = [f'ContractRent_LONG',
-                     f'ContractRent_TIME'
+dummy_values_list = ['ContractRent_LONG',
+                     'ContractRent_TIME'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['ContractRent'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -119,9 +119,9 @@ dummy_labels_list = ['Rent/Severe Rent Burden Over Time', 'Rent Burden and Sever
                      'Rent Burden by Age (Over Time)', 'Rent Burden by Age',
                      'Rent Burden by Income (Over Time)', 'Rent Burden by Income',
                     ]
-dummy_values_list = [f'RentBurden_TIME', f'RentBurden_LONG',
-                     f'RentBurden_AGE_TIME', f'RentBurden_AGE_LONG',
-                     f'RentBurden_INCOME_TIME', f'RentBurden_INCOME_LONG',
+dummy_values_list = ['RentBurden_TIME', 'RentBurden_LONG',
+                     'RentBurden_AGE_TIME', 'RentBurden_AGE_LONG',
+                     'RentBurden_INCOME_TIME', 'RentBurden_INCOME_LONG',
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['RentBurden'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -140,15 +140,15 @@ dummy_labels_list = ['Unemp. Rate by Race (Over Time)', 'Unemployment Rate by Ra
                      'LFPR by Education (Over Time)', 'LFPR by Education',
                      'EPOP by Education (Over Time)', 'EPOP by Education',
                     ]
-dummy_values_list = [f'EmploymentStatistics_UNEMP_RACE_TIME', f'EmploymentStatistics_UNEMP_RACE_LONG',
-                     f'EmploymentStatistics_LFPR_RACE_TIME', f'EmploymentStatistics_LFPR_RACE_LONG',
-                     f'EmploymentStatistics_EPOP_RACE_TIME', f'EmploymentStatistics_EPOP_RACE_LONG',
-                     f'EmploymentStatistics_UNEMP_SEX_TIME', f'EmploymentStatistics_UNEMP_SEX_LONG',
-                     f'EmploymentStatistics_LFPR_SEX_TIME', f'EmploymentStatistics_LFPR_SEX_LONG',
-                     f'EmploymentStatistics_EPOP_SEX_TIME', f'EmploymentStatistics_EPOP_SEX_LONG',
-                     f'EmploymentStatistics_UNEMP_EDUCATIONALSTATUS_TIME', f'EmploymentStatistics_UNEMP_EDUCATIONALSTATUS_LONG',
-                     f'EmploymentStatistics_LFPR_EDUCATIONALSTATUS_TIME', f'EmploymentStatistics_LFPR_EDUCATIONALSTATUS_LONG',
-                     f'EmploymentStatistics_EPOP_EDUCATIONALSTATUS_TIME', f'EmploymentStatistics_EPOP_EDUCATIONALSTATUS_LONG',
+dummy_values_list = ['EmploymentStatistics_UNEMP_RACE_TIME', 'EmploymentStatistics_UNEMP_RACE_LONG',
+                     'EmploymentStatistics_LFPR_RACE_TIME', 'EmploymentStatistics_LFPR_RACE_LONG',
+                     'EmploymentStatistics_EPOP_RACE_TIME', 'EmploymentStatistics_EPOP_RACE_LONG',
+                     'EmploymentStatistics_UNEMP_SEX_TIME', 'EmploymentStatistics_UNEMP_SEX_LONG',
+                     'EmploymentStatistics_LFPR_SEX_TIME', 'EmploymentStatistics_LFPR_SEX_LONG',
+                     'EmploymentStatistics_EPOP_SEX_TIME', 'EmploymentStatistics_EPOP_SEX_LONG',
+                     'EmploymentStatistics_UNEMP_EDUCATIONALSTATUS_TIME', 'EmploymentStatistics_UNEMP_EDUCATIONALSTATUS_LONG',
+                     'EmploymentStatistics_LFPR_EDUCATIONALSTATUS_TIME', 'EmploymentStatistics_LFPR_EDUCATIONALSTATUS_LONG',
+                     'EmploymentStatistics_EPOP_EDUCATIONALSTATUS_TIME', 'EmploymentStatistics_EPOP_EDUCATIONALSTATUS_LONG',
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['EmploymentStatistics'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -162,10 +162,10 @@ dummy_labels_list = ['Food Stamps Recipients (by Race)',
                      'Food Stamps Recipients (by Disability Status)',
                      'Food Stamps Recipients (by Working Status)',
                     ]
-dummy_values_list = [f'FoodStamps_RACE_LONG',
-                     f'FoodStamps_POVERTY_LONG',
-                     f'FoodStamps_DISABILITYSTATUS_LONG',
-                     f'FoodStamps_WORKINGSTATUS_LONG'
+dummy_values_list = ['FoodStamps_RACE_LONG',
+                     'FoodStamps_POVERTY_LONG',
+                     'FoodStamps_DISABILITYSTATUS_LONG',
+                     'FoodStamps_WORKINGSTATUS_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['FoodStamps'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -179,10 +179,10 @@ dummy_labels_list = ['Income Distribution (for Households)',
                      'Income Distribution (for Married Couples)',
                      'Income Distribution (for Nonfamily Households)',
                     ]
-dummy_values_list = [f'HouseholdIncome_HOUSEHOLDS_LONG',
-                     f'HouseholdIncome_FAMILIES_LONG', 
-                     f'HouseholdIncome_MARRIEDCOUPLEFAMILIES_LONG',
-                     f'HouseholdIncome_NONFAMILYHOUSEHOLDS_LONG'
+dummy_values_list = ['HouseholdIncome_HOUSEHOLDS_LONG',
+                     'HouseholdIncome_FAMILIES_LONG', 
+                     'HouseholdIncome_MARRIEDCOUPLEFAMILIES_LONG',
+                     'HouseholdIncome_NONFAMILYHOUSEHOLDS_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['HouseholdIncome'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -203,17 +203,17 @@ dummy_labels_list = ['Home Values (Owner-Occupied Units)',
                      'Monthly Owner Costs for Units with Mortgage',
                      'Year Householder Moved In'
                     ]
-dummy_values_list = [f'HousingUnitsandOccupancy_HOMEVALUE_LONG',
-                     f'HousingUnitsandOccupancy_RACE_HOUSINGUNITS_LONG',
-                     f'HousingUnitsandOccupancy_AGE_HOUSINGUNITS_LONG',
-                     f'HousingUnitsandOccupancy_YEARBUILT_LONG',
-                     f'HousingUnitsandOccupancy_UNITROOMS_LONG',
-                     f'HousingUnitsandOccupancy_UNITBEDROOMS_LONG',
-                     f'HousingUnitsandOccupancy_HEATINGFUEL_LONG',
-                     f'HousingUnitsandOccupancy_LACKINGFACILITIES_LONG',
-                     f'HousingUnitsandOccupancy_OCCUPANTSPERROOM_LONG',
-                     f'HousingUnitsandOccupancy_MORTGAGESMOC_LONG',
-                     f'HousingUnitsandOccupancy_YEARMOVEDIN_LONG'
+dummy_values_list = ['HousingUnitsandOccupancy_HOMEVALUE_LONG',
+                     'HousingUnitsandOccupancy_RACE_HOUSINGUNITS_LONG',
+                     'HousingUnitsandOccupancy_AGE_HOUSINGUNITS_LONG',
+                     'HousingUnitsandOccupancy_YEARBUILT_LONG',
+                     'HousingUnitsandOccupancy_UNITROOMS_LONG',
+                     'HousingUnitsandOccupancy_UNITBEDROOMS_LONG',
+                     'HousingUnitsandOccupancy_HEATINGFUEL_LONG',
+                     'HousingUnitsandOccupancy_LACKINGFACILITIES_LONG',
+                     'HousingUnitsandOccupancy_OCCUPANTSPERROOM_LONG',
+                     'HousingUnitsandOccupancy_MORTGAGESMOC_LONG',
+                     'HousingUnitsandOccupancy_YEARMOVEDIN_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['HousingUnitsandOccupancy'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -227,10 +227,10 @@ dummy_labels_list = ['Poverty by Race',
                      'Poverty by Age (Coming Soon!',
                      'Poverty by Employment (Coming Soon!)',
                     ]
-dummy_values_list = [f'Poverty_RACE_LONG',
-                     f'Poverty_SEX_LONG',
-                     f'Poverty_AGE_LONG',
-                     f'Poverty_EMPLOYMENT_LONG'
+dummy_values_list = ['Poverty_RACE_LONG',
+                     'Poverty_SEX_LONG',
+                     'Poverty_AGE_LONG',
+                     'Poverty_EMPLOYMENT_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['Poverty'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -247,10 +247,10 @@ dummy_labels_list = ['Coverage by Race',
                      'Coverage by Citizenship Status (Coming Soon!)',
                      'Coverage by Educational Status (Coming Soon!)'
                     ]
-dummy_values_list = [f'HealthInsuranceCoverage_RACE_LONG',
-                     f'HealthInsuranceCoverage_SEX_LONG',
-                     f'HealthInsuranceCoverage_CITIZEN_LONG',
-                     f'HealthInsuranceCoverage_EDUCATIONALSTATUS_LONG',
+dummy_values_list = ['HealthInsuranceCoverage_RACE_LONG',
+                     'HealthInsuranceCoverage_SEX_LONG',
+                     'HealthInsuranceCoverage_CITIZEN_LONG',
+                     'HealthInsuranceCoverage_EDUCATIONALSTATUS_LONG',
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['HealthInsuranceCoverage'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -267,10 +267,10 @@ dummy_labels_list = ['Commute Methods to Work',
                      'Travel Times',
                      'Vehicles Available'
                     ]
-dummy_values_list = [f'TransportationMethodstoWork_METHODSTOWORK_LONG',
-                     f'TransportationMethodstoWork_DEPARTURE_LONG',
-                     f'TransportationMethodstoWork_TRAVEL_LONG',
-                     f'TransportationMethodstoWork_VEHICLESAVAILABLE_LONG'
+dummy_values_list = ['TransportationMethodstoWork_METHODSTOWORK_LONG',
+                     'TransportationMethodstoWork_DEPARTURE_LONG',
+                     'TransportationMethodstoWork_TRAVEL_LONG',
+                     'TransportationMethodstoWork_VEHICLESAVAILABLE_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['TransportationMethodstoWork'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -282,9 +282,9 @@ dummy_labels_list = ['Usual Hours Worked Weekly',
                      'Mean Hours Worked Weekly',
                      'Mean Hours Worked Weekly (Over Time)',
                     ]
-dummy_values_list = [f'WorkHours_USUALHOURS_LONG',
-                     f'WorkHours_MEANHOURS_LONG',
-                     f'WorkHours_MEANHOURS_TIME',
+dummy_values_list = ['WorkHours_USUALHOURS_LONG',
+                     'WorkHours_MEANHOURS_LONG',
+                     'WorkHours_MEANHOURS_TIME',
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['WorkHours'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -300,13 +300,13 @@ dummy_labels_list = ['Civilian Workers by Industry',
                      'Gender Pay Gap, Full-Time Workers (Coming Soon!)',
                      'Gender Pay Gap, All Workers (Coming Soon!)'
                     ]
-dummy_values_list = [f'CharacteristicsoftheEconomicPopulation_INDUSTRY_LONG',
-                     f'CharacteristicsoftheEconomicPopulation_OCCUPATION_LONG',
-                     f'CharacteristicsoftheEconomicPopulation_CLASS_LONG',
-                     f'CharacteristicsoftheEconomicPopulation_INDUSTRYEARNINGS_LONG',
-                     f'CharacteristicsoftheEconomicPopulation_INDUSTRYFULLEARNINGS_LONG',
-                     f'CharacteristicsoftheEconomicPopulation_GENDERPAYGAPFULL_LONG',
-                     f'CharacteristicsoftheEconomicPopulation_GENDERPAYGAPALL_LONG'
+dummy_values_list = ['CharacteristicsoftheEconomicPopulation_INDUSTRY_LONG',
+                     'CharacteristicsoftheEconomicPopulation_OCCUPATION_LONG',
+                     'CharacteristicsoftheEconomicPopulation_CLASS_LONG',
+                     'CharacteristicsoftheEconomicPopulation_INDUSTRYEARNINGS_LONG',
+                     'CharacteristicsoftheEconomicPopulation_INDUSTRYFULLEARNINGS_LONG',
+                     'CharacteristicsoftheEconomicPopulation_GENDERPAYGAPFULL_LONG',
+                     'CharacteristicsoftheEconomicPopulation_GENDERPAYGAPALL_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['CharacteristicsoftheEconomicPopulation'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -323,12 +323,12 @@ dummy_labels_list = ['Population by Age',
                      'American Indian and Alaska Native Population',
                      'Native Hawaiian and Pacific Islander Population',
                     ]
-dummy_values_list = [f'Population_AGE_LONG',
-                     f'Population_RACE_LONG',
-                     f'Population_HISPANICLATINO_LONG',
-                     f'Population_ASIAN_LONG',
-                     f'Population_INDIGENOUS_LONG',
-                     f'Population_NATIVEHAWAIIANPACIFICISLANDER_LONG'
+dummy_values_list = ['Population_AGE_LONG',
+                     'Population_RACE_LONG',
+                     'Population_HISPANICLATINO_LONG',
+                     'Population_ASIAN_LONG',
+                     'Population_INDIGENOUS_LONG',
+                     'Population_NATIVEHAWAIIANPACIFICISLANDER_LONG'
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['Population'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
@@ -336,19 +336,42 @@ submeasures_dict['Population'] = [{'label': html.Span([i], style = {'color': '#1
 
 
 # -- Education -- #
-dummy_labels_list = ['Attainment by Race (Coming Soon!)',
-                     'Attainment by Citizenship (Coming Soon!)',
-                     'Attainment by Age (Coming Soon!)',
+dummy_labels_list = ['Attainment by Citizenship',
+                     'Attainment, White',
+                     'Attainment, Black',
+                     'Attainment, American Indian & Alaska Native',
+                     'Attainment, Asian',
+                     'Attainment, Native Hawaiian & Pacific Islander',
+                     'Attainment, Some Other Race',
+                     'Attainment, Two or More Races',
+                     'Attainment, White (Not Hispanic/Latino)',
+                     'Attainment, Hispanic/Latino',
+                     'Attainment, 18 to 24',
+                     'Attainment, 25 to 34',
+                     'Attainment, 35 to 44',
+                     'Attainment, 45 to 64',
+                     'Attainment, 65 and Older',
                     ]
-dummy_values_list = [f'Education_RACE_LONG',
-                     f'Education_CITIZENSHIP_LONG',
-                     f'Education_AGE_LONG',
+dummy_values_list = ['Education_CITIZENSHIP_LONG',
+                     'Education_RACE_WHITE_LONG',
+                     'Education_RACE_BLACK_LONG',
+                     'Education_RACE_INDIGENOUS_LONG',
+                     'Education_RACE_ASIAN_LONG',
+                     'Education_RACE_NATIVEHAWAIIANPACIFICISLANDER_LONG',
+                     'Education_RACE_SOMEOTHERRACE_LONG',
+                     'Education_RACE_TWOORMORERACES_LONG',
+                     'Education_RACE_WHITENOTHISPANIC_LONG',
+                     'Education_RACE_HISPANIC_LONG',
+                     'Education_AGE_18to24_LONG',
+                     'Education_AGE_25to34_LONG',
+                     'Education_AGE_35to44_LONG',
+                     'Education_AGE_45to64_LONG',
+                     'Education_AGE_65andOlder_LONG',
                     ]
 dummy_tuple = zip(dummy_labels_list, dummy_values_list)
 submeasures_dict['Education'] = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in dummy_tuple]
 
-disabled_values = ['Education_RACE_LONG', 'Education_CITIZENSHIP_LONG', 'Education_AGE_LONG']
-submeasures_dict['Education']  = [dict(item, **{'disabled': True}) if item['value'] in disabled_values else dict(item) for item in submeasures_dict['Education'] ]
+
 
 
 
@@ -480,14 +503,32 @@ app.layout = html.Div([
                 clearable   = True,
                 searchable  = False
             ),
-            html.Div(children = [
-                dbc.Button("Help?",
-                           id         = "open-offcanvas",
-                           outline    = True,
-                           color      = 'primary',
-                           n_clicks   = 0)],
-                     className = 'fmt-button'
-                    ),
+            dbc.Row(className = 'fmt-button', children = [
+                dbc.Col(width = 3, children = [
+                    dbc.Button("Help?",
+                               id         = "open-offcanvas",
+                               outline    = True,
+                               color      = 'primary',
+                               n_clicks   = 0)],
+                         className = 'help-button'
+                        ),
+                dbc.Col(width = 3, children = [
+                    dbc.Button("Data",
+                               id         = "data-button",
+                               outline    = True,
+                               color      = 'danger',
+                               # external_link = False,
+                               n_clicks   = 0)],
+                        ),
+                dbc.Col(width = 3, children = [
+                    dbc.Button("Code",
+                               id         = "code-button",
+                               outline    = True,
+                               color      = 'secondary',
+                               href       = 'https://github.com/ramindersinghdubb/Los-Angeles-County-Socioeconomic-Profile',
+                               n_clicks   = 0)],
+                        ),
+            ]),
             dbc.Offcanvas(
                 FefferyMarkdown(id          = "help-text",
                                 renderHtml  = True,
@@ -831,6 +872,13 @@ app.clientside_callback("""
             <span style='font-size:22px;'>Sources</span><br>
             <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
         }
+
+        if ( selected_measure == 'Education' ) {
+            return `<span style='font-size:22px;'>Educational Attainment</span></u><br>
+            <span style='color:#85BCC7;'>Educational attainment</span>, unless otherwise stated, is reported for the <span style='color:#85BCC7;'>25 year and older</span> population.<br><br><br>
+            <span style='font-size:22px;'>Sources</span><br>
+            <u><a href='https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/2024/acs_design_methodology_report_2024.pdf'>2024 American Community Survey Design & Methodology Report</a></u>`;
+        }
     }
     """,
     Output("help-text", "markdownStr"),
@@ -879,6 +927,31 @@ app.clientside_callback(
     Input('place-dropdown', 'value'),
     Input('submeasure-dropdown', 'value')
 )
+
+
+# ---- -------------------- ---- #
+# ---- Data Download Button ---- #
+# ---- -------------------- ---- #
+
+app.clientside_callback(
+    """
+    function(selected_year, selected_place, selected_measure, selected_submeasure) {
+        if (selected_submeasure === undefined || selected_submeasure === null) {
+            const url = `https://github.com/ramindersinghdubb/datasets/blob/main/LongBeachSocioeconomicIndicators/${selected_year}/${selected_measure}_${selected_place}_${selected_year}.csv`;
+            return url;
+        } else {
+            const url = `https://github.com/ramindersinghdubb/datasets/blob/main/LongBeachSocioeconomicIndicators/${selected_year}/${selected_submeasure}_${selected_place}_${selected_year}.csv`;
+            return url;
+        }
+    }
+    """,
+    Output('data-button', 'href'),
+    Input('year-dropdown', 'value'),
+    Input('place-dropdown', 'value'),
+    Input('measure-dropdown', 'value'),
+    Input('submeasure-dropdown', 'value')
+)
+
 
 
 # ---- ------------ ---- #
@@ -1254,6 +1327,54 @@ app.clientside_callback(
             var zmin;
             var zmax;
             var zauto_bool = true;
+        }
+
+        if (selected_measure == 'Education') {
+            var z_array = my_array.map(({ESTIMATE_TOTAL_CITIZENSHIPSTATUS}) => ESTIMATE_TOTAL_CITIZENSHIPSTATUS);
+            var strings = my_array.map(function(item) {
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                + "<span style='font-family: Trebuchet MS, sans-serif;'>Total 25 and Older Population (" + item['YEAR'] + "): <br><b style='color:#070504; font-size:14px;'>" + item['ESTIMATE_TOTAL_CITIZENSHIPSTATUS'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
+            });
+            var colorscale_color = color_dict['Emrld'];
+            var colorbar_title_text = '<b>25 and<br>Older<br>Population</b>';
+            var colorbar_tickprefix = '';
+            var colorbar_ticksuffix = '';
+            var zmin;
+            var zmax;
+            var zauto_bool = true;
+
+            if (selected_submeasure != undefined && selected_submeasure.includes("_AGE_")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_AGE}) => ESTIMATE_TOTAL_AGE);
+                var colorbar_title_text = '<b>18 and<br>Older<br>Population</b>';
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("_WHITE_")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_White}) => ESTIMATE_TOTAL_RACE_White);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("BLACK")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_BlackorAfricanAmerican}) => ESTIMATE_TOTAL_RACE_BlackorAfricanAmerican);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("INDIGENOUS")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_AmericanIndianandAlaskaNative}) => ESTIMATE_TOTAL_RACE_AmericanIndianandAlaskaNative);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("ASIAN")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_Asian}) => ESTIMATE_TOTAL_RACE_Asian);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("NATIVEHAWAIIANPACIFICISLANDER")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_NativeHawaiianandOtherPacificIslander}) => ESTIMATE_TOTAL_RACE_NativeHawaiianandOtherPacificIslander);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("SOMEOTHERRACE")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_Someotherrace}) => ESTIMATE_TOTAL_RACE_Someotherrace);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("TWOORMORERACES")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_Twoormoreraces}) => ESTIMATE_TOTAL_RACE_Twoormoreraces);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("WHITENOTHISPANIC")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_WhitenotHispanicorLatino}) => ESTIMATE_TOTAL_RACE_WhitenotHispanicorLatino);
+            }
+            if (selected_submeasure != undefined && selected_submeasure.includes("_HISPANIC_")){
+                var z_array = my_array.map(({ESTIMATE_TOTAL_RACE_HispanicorLatinoofanyrace}) => ESTIMATE_TOTAL_RACE_HispanicorLatinoofanyrace);
+            }
+            
         }
 
 
@@ -2841,6 +2962,178 @@ app.clientside_callback(
                         'hovertemplate': null
                     }];
                     
+                }
+
+                if ( selected_submeasure.startsWith("Education") ) {
+                    if ( selected_submeasure.includes("_AGE_") || selected_submeasure.includes("_RACE_") ) {
+                        var y1_array = my_array.map(({value_MALE}) => value_MALE);
+                        var y2_array = my_array.map(({value_FEMALE}) => value_FEMALE);
+                        
+                        var xlabels_size;
+                        var x_ticktext;
+                        var x_tickvals;
+    
+                        var xaxis_standoff = 20;
+    
+                        var xaxis_title_text = '<b>Educational Attainment</b>';
+                        
+                        var yaxis_title_text = '<b>Number of Individuals</b>';
+                        var yaxis_tickprefix = '';
+                        var yaxis_ticksuffix = '';
+                        var x_tickvals = ['Less than 9th grade', '9th to 12th grade, no diploma', 'Less than high school diploma', 'High school graduate (includes equivalency)', 'Some college, no degree', "Some college or associate's degree", "Associate's degree", "Bachelor's degree", 'Graduate or professional degree', "Bachelor's degree or higher"];
+                        var x_ticktext = ['Less than<br>9th grade', '9th to 12th grade<br>(No diploma)', 'Less than high<br>school graduate', 'High school graduate<br>(or equivalent)', 'Some college<br>(No degree)', "Some college or<br>associate's degree", "Associate's<br>degree", "Bachelor's<br>degree", 'Graduate or<br>professional<br>degree', "Bachelor's degree<br>or higher"];
+                        
+                        if ( selected_submeasure.includes("_AGE_") ) {
+                            var y1_text = y1_array.map(function(item) {
+                                return "<b style='color:#112A46; font-size:9px;'>" + item + "</b>";
+                            });
+                            var y2_text = y2_array.map(function(item) {
+                                return "<b style='color:#112A46; font-size:9px;'>" + item + "</b>";
+                            });
+                            var xlabels_size = 10;
+                        }
+                        if ( selected_submeasure.includes("_RACE_") ) {
+                            var y1_text = y1_array.map(function(item) {
+                                return "<b style='color:#112A46; font-size:10px;'>" + item + "</b>";
+                            });
+                            var y2_text = y2_array.map(function(item) {
+                                return "<b style='color:#112A46; font-size:10px;'>" + item + "</b>";
+                            });
+                            var xlabels_size = 11;
+                        }
+                        
+                        var title_text = `<b>Individuals by Educational Attainment, ${selected_year}</b>`;
+                        
+                        data1 = {
+                            'type': 'bar',
+                            'x': x_array,
+                            'y': y1_array,
+                            name: 'Men',
+                            'text': y1_text,
+                            'textposition': 'auto',
+                            'marker': {'line': {'color': '#111111', 'width': 1.5},
+                                       'color': 'rgb(179,205,227)'
+                                       },
+                            'textfont': {'shadow': '1px 1px 20px #FEF9F3'},
+                            'hoverinfo': 'none',
+                            'hovertemplate': null
+                        };
+    
+                        data2 = {
+                            'type': 'bar',
+                            'x': x_array,
+                            'y': y2_array,
+                            name: 'Women',
+                            'text': y2_text,
+                            'textposition': 'auto',
+                            'marker': {'line': {'color': '#111111', 'width': 1.5},
+                                       'color': 'rgb(244,202,228)'
+                                       },
+                            'textfont': {'shadow': '1px 1px 20px #FEF9F3'},
+                            'hoverinfo': 'none',
+                            'hovertemplate': null
+                        };
+    
+                        var data = [data1, data2];
+                    }
+
+                    if ( selected_submeasure.includes("CITIZENSHIP") ) {
+                        var y1_array = my_array.map(({value_BORNINSTATE}) => value_BORNINSTATE);
+                        var y2_array = my_array.map(({value_BORNOUTSTATE}) => value_BORNOUTSTATE);
+                        var y3_array = my_array.map(({value_NATIVEOUTSIDE}) => value_NATIVEOUTSIDE);
+                        var y4_array = my_array.map(({value_FOREIGN}) => value_FOREIGN);
+
+                        var y1_text = y1_array.map(function(item) {
+                                return "<b style='color:#112A46; font-size:8px;'>" + item + "</b>";
+                            });
+                        var y2_text = y2_array.map(function(item) {
+                            return "<b style='color:#112A46; font-size:8px;'>" + item + "</b>";
+                        });
+                        var y3_text = y3_array.map(function(item) {
+                            return "<b style='color:#112A46; font-size:8px;'>" + item + "</b>";
+                        });
+                        var y4_text = y4_array.map(function(item) {
+                            return "<b style='color:#112A46; font-size:8px;'>" + item + "</b>";
+                        });
+                        
+                        var xlabels_size = 9;
+                        var x_ticktext;
+                        var x_tickvals;
+    
+                        var xaxis_standoff = 10;
+    
+                        var xaxis_title_text = '<b>Educational Attainment</b>';
+                        
+                        var yaxis_title_text = '<b>Number of Individuals</b>';
+                        var yaxis_tickprefix = '';
+                        var yaxis_ticksuffix = '';
+                        var x_tickvals = ['Less than high school graduate', 'High school graduate (includes equivalency)', "Some college or associate's degree", "Bachelor's degree", 'Graduate or professional degree'];
+                        var x_ticktext = ['Less than high<br>school graduate', 'High school graduate<br>(or equivalent)', "Some college or<br>associate's degree", "Bachelor's<br>degree", 'Graduate or<br>professional<br>degree'];
+                        
+                        var title_text = `<b>Individuals by Educational Attainment, ${selected_year}</b>`;
+                        
+                        data1 = {
+                            'type': 'bar',
+                            'x': x_array,
+                            'y': y1_array,
+                            name: 'Born in-state',
+                            'text': y1_text,
+                            'textposition': 'auto',
+                            'marker': {'line': {'color': '#111111', 'width': 1.5},
+                                       'color': discrete_color_dict['Pastel2'][0]
+                                       },
+                            'textfont': {'shadow': '1px 1px 20px #FEF9F3'},
+                            'hoverinfo': 'none',
+                            'hovertemplate': null
+                        };
+    
+                        data2 = {
+                            'type': 'bar',
+                            'x': x_array,
+                            'y': y2_array,
+                            name: 'Born out-of-state',
+                            'text': y2_text,
+                            'textposition': 'auto',
+                            'marker': {'line': {'color': '#111111', 'width': 1.5},
+                                       'color': discrete_color_dict['Pastel2'][1]
+                                       },
+                            'textfont': {'shadow': '1px 1px 20px #FEF9F3'},
+                            'hoverinfo': 'none',
+                            'hovertemplate': null
+                        };
+
+                        data3 = {
+                            'type': 'bar',
+                            'x': x_array,
+                            'y': y3_array,
+                            name: 'Native (born<br>outside the U.S.)',
+                            'text': y3_text,
+                            'textposition': 'auto',
+                            'marker': {'line': {'color': '#111111', 'width': 1.5},
+                                       'color': discrete_color_dict['Pastel2'][2]
+                                       },
+                            'textfont': {'shadow': '1px 1px 20px #FEF9F3'},
+                            'hoverinfo': 'none',
+                            'hovertemplate': null
+                        };
+
+                        data4 = {
+                            'type': 'bar',
+                            'x': x_array,
+                            'y': y4_array,
+                            name: 'Foreign-born',
+                            'text': y4_text,
+                            'textposition': 'auto',
+                            'marker': {'line': {'color': '#111111', 'width': 1.5},
+                                       'color': discrete_color_dict['Pastel2'][3]
+                                       },
+                            'textfont': {'shadow': '1px 1px 20px #FEF9F3'},
+                            'hoverinfo': 'none',
+                            'hovertemplate': null
+                        };
+    
+                        var data = [data1, data2, data3, data4];
+                    }
                 }
 
 

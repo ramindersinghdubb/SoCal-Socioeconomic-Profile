@@ -33,6 +33,10 @@ h3 {
   padding-right: 5.0%;
 }
 
+.fmt-dropdown > .Select-control {
+  border: 2px solid #A3CAE9;
+}
+
 .fmt-button {
   padding-top: 25px;
   padding-bottom: 25px;
@@ -154,6 +158,27 @@ h3 {
 }
 [class*="primary"]:hover {
     background-color: #2B506F!important;
+}
+
+
+[class*="danger"] {
+  color: #FFFFFF;
+  font-family: Gill Sans, sans-serif;
+  font-weight: normal;
+  border-color: #B1BED2!important;
+}
+[class*="danger"]:hover {
+    background-color: #506F2B!important;
+}
+
+[class*="secondary"] {
+  color: #FFFFFF;
+  font-family: Gill Sans, sans-serif;
+  font-weight: normal;
+  border-color: #B1BED2!important;
+}
+[class*="secondary"]:hover {
+    background-color: #93568C!important;
 }
 
 
