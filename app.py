@@ -24,18 +24,30 @@ ca2020['PLACENAME'] = ca2020['PLACENAME'].str.replace(' city', "")
 
 ca2020 = ca2020[['STATEFP', 'PLACEFP', 'PLACE_FIPS', 'PLACENAME', 'COUNTIES', 'TYPE']]
 
-LA_County_FIPS = ca2020[ca2020.COUNTIES == 'Los Angeles County']
-LA_County_keys = LA_County_FIPS['PLACENAME'].to_list()
-LA_County_values = LA_County_FIPS['PLACENAME'].str.replace(' ', '').replace('LaCañadaFlintridge', 'LaCanadaFlintridge').to_list()
+SoCal2020 = ca2020[ca2020.COUNTIES.str.contains('Los Angeles County|Santa Barbara County|Ventura County|Orange County|San Bernardino County|Riverside County|San Diego County|Imperial County|San Luis Obispo County|Kern County')]
 
-places_tuple = zip(LA_County_keys, LA_County_values)
+for FIPS_code, new_name in zip(['0639759', '0639766', '0665042'], ['Lakeside (Kern County)', 'Lakeside (San Diego County)', 'San Buenaventura (Ventura County)']):
+    SoCal2020.loc[SoCal2020['PLACE_FIPS'] == FIPS_code, 'PLACENAME'] = new_name
+
+SoCal_keys = SoCal2020['PLACENAME'].str.replace(' town', "").to_list()
+SoCal_values = SoCal2020['PLACENAME'].str.replace(' ', '').replace('LaCañadaFlintridge', 'LaCanadaFlintridge').to_list()
+places_tuple = zip(SoCal_keys, SoCal_values)
 places_options = [{'label': html.Span([i], style = {'color': '#151E3D'}), 'value': j} for i, j in places_tuple]
-places_options = [dict(item) for item in places_options if item['value'] != 'PepperdineUniversity']
 
-modified_values_1 = ['EastWhittier', 'Vincent']
+anomalous_places = ['AltaSierra', 'BakersfieldCountryClub', 'BentonPark', 'CaliforniaPolytechnicStateUniversity',
+                    'CampPendletonMainside', 'CasaLoma', 'ChoctawValley', 'Cottonwood', 'DelDios', 'DiGiorgio',
+                    'EastBakersfield', 'EasternGoletaValley', 'EastNiles', 'Edison', 'ElAdobe', 'ElCentroNavalAirFacility',
+                    'ElfinForest', 'Fairfax', 'Glennville', 'Goodmanville', 'HarmonyGrove', 'Hillcrest', 'LaCresta',
+                    'Lakeside(KernCounty)', 'Modjeska', 'MountainMeadows', 'OldeStockdale', 'OldRiver', 'OldStine',
+                    'Pala', 'PepperdineUniversity', 'PotomacPark', 'PumpkinCenter', 'RanchoMissionViejo',
+                    'RexlandAcres', 'RidgecrestHeights', 'Rivergrove', 'Sage', 'Silverado', 'Somis', 'Stebbins',
+                    'Tarina', 'TrabucoCanyon', 'UniversityofCalifornia-SantaBarbara', 'WilliamsCanyon', 'Woody', 'Yermo']
+places_options = [dict(item) for item in places_options if any(item['value'] != place for place in anomalous_places)]
+
+modified_values_1 = ['EastWhittier', 'JurupaValley', 'TemescalValley', 'Vincent', 'Whitewater']
 modified_places_options_1 = [dict(item, **{'disabled': True}) if item['value'] in modified_values_1 else dict(item) for item in places_options]
 
-modified_values_2 = ['EastWhittier']
+modified_values_2 = ['EastWhittier', 'JurupaValley']
 modified_places_options_2 = [dict(item, **{'disabled': True}) if item['value'] in modified_values_2 else dict(item) for item in places_options]
 
 
@@ -467,8 +479,8 @@ app.layout = html.Div([
     html.Div(className = "row", children = [
         # ---- LEFT ---- #
         html.Div(className = "four columns", children = [
-            html.H3("Los Angeles County Socioeconomic Profile"),
-            html.P("Using the American Community Survey, this website allows you to visualize various socioeconomic measures for cities in Los Angeles County.",
+            html.H3("SoCal Socioeconomic Profile"),
+            html.P("Using the American Community Survey, this website allows you to visualize various socioeconomic measures for cities in Southern California.",
                    className = 'text-p'),
             html.P("Use the dropdowns to navigate your selection process.",
                    className = 'text-p'),
@@ -627,10 +639,10 @@ app.clientside_callback(
         var years_options = years_options;
         var selected_place = `${selected_place}`;
 
-        if ( ['Vincent'].includes(selected_place) ) {
+        if ( ['TemescalValley', 'Vincent', 'Whitewater'].includes(selected_place) ) {
             var years_options = modified_years_options_1;
         }
-        if ( ['EastWhittier'].includes(selected_place) ||  ['HealthInsuranceCoverage', 'Poverty'].includes(selected_measure) ) {
+        if ( ['EastWhittier', 'JurupaValley'].includes(selected_place) ||  ['HealthInsuranceCoverage', 'Poverty'].includes(selected_measure) ) {
             var years_options = modified_years_options_2;
         }
         if ( ['FoodStamps'].includes(selected_measure) ) {
