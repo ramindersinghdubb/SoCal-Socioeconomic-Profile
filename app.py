@@ -961,7 +961,7 @@ app.clientside_callback(
 app.clientside_callback(
     """
     async function(selected_year) {
-        const url = `https://raw.githubusercontent.com/ramindersinghdubb/datasets/refs/heads/main/SoCal_CensusTract_Mapfiles/SoCal_LatLongPoints_${selected_year}.geojson`;
+        const url = `https://raw.githubusercontent.com/ramindersinghdubb/datasets/refs/heads/main/SoCal_CensusTract_Mapfiles/SoCal_LatLongPoints_${selected_year}.json`;
         const response = await fetch(url);
         const data = await response.json();
         return data;
