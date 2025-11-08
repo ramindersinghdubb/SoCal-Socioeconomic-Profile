@@ -479,8 +479,8 @@ app.layout = html.Div([
     html.Div(className = "row", children = [
         # ---- LEFT ---- #
         html.Div(className = "four columns", children = [
-            html.H3("SoCal Socioeconomic Profile"),
-            html.P("Using the American Community Survey, this website allows you to visualize various socioeconomic measures for cities in Southern California.",
+            html.H3("Southern California Socioeconomic Profile"),
+            html.P("Using the American Community Survey, this website allows you to visualize various socioeconomic measures for cities in SoCal.",
                    className = 'text-p'),
             html.P("Use the dropdowns to navigate your selection process.",
                    className = 'text-p'),
