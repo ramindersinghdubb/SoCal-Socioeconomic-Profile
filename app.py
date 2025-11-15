@@ -1016,9 +1016,6 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(selected_year, selected_place, selected_measure, selected_submeasure, masterfile, mapfile, color_dict, places_dict) {
-        var dummy_var = places_dict.find(item => item['value'] === selected_place);
-        var city_string = Object.values(dummy_var['label']['props']['children']);
-        
         var my_array = masterfile.filter(item => item['YEAR'] === selected_year);
 
         var locations_array = my_array.map(({GEO_ID}) => GEO_ID);
@@ -1028,7 +1025,7 @@ app.clientside_callback(
         if (selected_measure == 'ContractRent') {
             var z_array = my_array.map(({ESTIMATE_Mediancontractrent}) => ESTIMATE_Mediancontractrent);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Median Contract Rent (" + item['YEAR'] + "): <b style='color:#A91B0D; font-size:14px;'>" + item['ESTIMATE_Mediancontractrent_string'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             var colorscale_color = 'YlOrRd';
@@ -1050,7 +1047,7 @@ app.clientside_callback(
         if (selected_measure == 'RentBurden') {
             var z_array = my_array.map(({ESTIMATE_Totalrenters_RentBurden}) => ESTIMATE_Totalrenters_RentBurden);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Percentage of Rent-Burdened&nbsp;&nbsp;<br>Renters (" + item['YEAR'] + "): <b style='color:#610C04; font-size:14px;'>" + item['ESTIMATE_Totalrenters_RentBurden'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             var colorscale_color = 'YlOrRd';
@@ -1066,7 +1063,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("UNEMP")){
                 var z_array = my_array.map(({ESTIMATE_UNEMP_16andOlder}) => ESTIMATE_UNEMP_16andOlder);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Population: 16 and older</span>" + "<br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Unemployment Rate (" + item['YEAR'] + "): <b style='color:#800000; font-size:14px;'>" + item['ESTIMATE_UNEMP_16andOlder'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
@@ -1081,7 +1078,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("LFPR")){
                 var z_array = my_array.map(({ESTIMATE_LFPR_16andOlder}) => ESTIMATE_LFPR_16andOlder);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Population: 16 and older</span>" + "<br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Labor Force Participation Rate (" + item['YEAR'] + "): <b style='color:#7A4988; font-size:14px;'>" + item['ESTIMATE_LFPR_16andOlder'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
@@ -1096,7 +1093,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("EPOP")){
                 var z_array = my_array.map(({ESTIMATE_EPOP_16andOlder}) => ESTIMATE_EPOP_16andOlder);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Population: 16 and older</span>" + "<br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Employment-to-Population Ratio (" + item['YEAR'] + "): <b style='color:#234F1E; font-size:14px;'>" + item['ESTIMATE_EPOP_16andOlder'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
@@ -1111,7 +1108,7 @@ app.clientside_callback(
             if (selected_submeasure == undefined) {
                 var z_array = my_array.map(({ESTIMATE_UNEMP_16andOlder}) => ESTIMATE_UNEMP_16andOlder);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Population: 16 and older</span>" + "<br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Unemployment Rate (" + item['YEAR'] + "): <b style='color:#800000; font-size:14px;'>" + item['ESTIMATE_UNEMP_16andOlder'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
@@ -1128,7 +1125,7 @@ app.clientside_callback(
         if (selected_measure == 'FoodStamps') {
             var z_array = my_array.map(({PERCENT_HouseholdsreceivingfoodstampsSNAP}) => PERCENT_HouseholdsreceivingfoodstampsSNAP);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Percentage of Households Receiving&nbsp;&nbsp;<br>Food Stamps (" + item['YEAR'] + "): <b style='color:#559C9E; font-size:14px;'>" + item['PERCENT_HouseholdsreceivingfoodstampsSNAP'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             var colorscale_color = color_dict['DarkMint'];
@@ -1143,7 +1140,7 @@ app.clientside_callback(
         if (selected_measure == 'HouseholdIncome') {
             var z_array = my_array.map(({ESTIMATE_Households_Meanincomedollars}) => ESTIMATE_Households_Meanincomedollars);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Median Household Income (" + item['YEAR'] + "): <br><b style='color:#234F1E; font-size:14px;'>$" + item['ESTIMATE_Households_Meanincomedollars'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             var colorscale_color = color_dict['Emrld'];
@@ -1158,7 +1155,7 @@ app.clientside_callback(
         if (selected_measure == 'HousingUnitsandOccupancy') {
             var z_array = my_array.map(({ESTIMATE_TotalHousingUnits}) => ESTIMATE_TotalHousingUnits);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Housing Units (" + item['YEAR'] + "): <br><b style='color:#234F1E; font-size:14px;'>" + item['ESTIMATE_TotalHousingUnits'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             
@@ -1170,7 +1167,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("_HOMEVALUE_")){
                 var z_array = my_array.map(({ESTIMATE_VALUE_Owneroccupiedhousingunits_Mediandollars}) => ESTIMATE_VALUE_Owneroccupiedhousingunits_Mediandollars);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Median Owner-Occupied Home Value (" + item['YEAR'] + "): <br><b style='color:#234F1E; font-size:14px;'>" + item['ESTIMATE_VALUE_Owneroccupiedhousingunits_Mediandollars_string'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
                 var colorscale_color = color_dict['Emrld'];
@@ -1182,7 +1179,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("SMOC")){
                 var z_array = my_array.map(({ESTIMATE_SELECTEDMONTHLYOWNERCOSTSSMOC_Housingunitswithamortgage_Mediandollars}) => ESTIMATE_SELECTEDMONTHLYOWNERCOSTSSMOC_Housingunitswithamortgage_Mediandollars);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Median Monthly Owner Costs (" + item['YEAR'] + "): <br><b style='color:#234F1E; font-size:14px;'>" + item['ESTIMATE_SELECTEDMONTHLYOWNERCOSTSSMOC_Housingunitswithamortgage_Mediandollars'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
                 
@@ -1200,7 +1197,7 @@ app.clientside_callback(
         if (selected_measure == 'Poverty') {
             var z_array = my_array.map(({ESTIMATE_Percentbelowpovertylevel_Populationforwhompovertystatusisdetermined}) => ESTIMATE_Percentbelowpovertylevel_Populationforwhompovertystatusisdetermined);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Percent Below Poverty Level (" + item['YEAR'] + "): <br><b style='color:#420C09; font-size:14px;'>" + item['ESTIMATE_Percentbelowpovertylevel_Populationforwhompovertystatusisdetermined'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             var colorscale_color = color_dict['Magma'];
@@ -1215,7 +1212,7 @@ app.clientside_callback(
         if (selected_measure == 'HealthInsuranceCoverage') {
             var z_array = my_array.map(({PERCENT_Uninsured_Civiliannoninstitutionalizedpopulation}) => PERCENT_Uninsured_Civiliannoninstitutionalizedpopulation);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Percentage Uninsured  (" + item['YEAR'] + "): <b style='color:#710C04; font-size:14px;'>" + item['PERCENT_Uninsured_Civiliannoninstitutionalizedpopulation'] + "%</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             var colorscale_color = color_dict['Hot'];
@@ -1230,7 +1227,7 @@ app.clientside_callback(
         if (selected_measure == 'TransportationMethodstoWork') {
             var z_array = my_array.map(({PERCENT_Total_Workers16yearsandoverwhodidnotworkfromhome_TRAVELTIMETOWORK_Meantraveltimetoworkminutes}) => PERCENT_Total_Workers16yearsandoverwhodidnotworkfromhome_TRAVELTIMETOWORK_Meantraveltimetoworkminutes);
             var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Average Work Commute Time (" + item['YEAR'] + "): <br><b style='color:#B2560D; font-size:14px;'>" + item['PERCENT_Total_Workers16yearsandoverwhodidnotworkfromhome_TRAVELTIMETOWORK_Meantraveltimetoworkminutes'] + " minutes </b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
             var colorscale_color = color_dict['OrRd'];
@@ -1246,7 +1243,7 @@ app.clientside_callback(
         if (selected_measure == 'WorkHours') {
             var z_array = my_array.map(({ESTIMATE_Total_Population16to64years_Meanusualhoursworkedforworkers}) => ESTIMATE_Total_Population16to64years_Meanusualhoursworkedforworkers);
             var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Average Usual Hours Worked (" + item['YEAR'] + "): <br><b style='color:#070504; font-size:14px;'>" + item['ESTIMATE_Total_Population16to64years_Meanusualhoursworkedforworkers'] + " hours </b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
             var colorscale_color = color_dict['OrRd'];
@@ -1262,7 +1259,7 @@ app.clientside_callback(
         if (selected_measure == 'CharacteristicsoftheEconomicPopulation') {
             var z_array = my_array.map(({ESTIMATE_EMPLOYMENTSTATUS_Population16yearsandover_Inlaborforce_Civilianlaborforce}) => ESTIMATE_EMPLOYMENTSTATUS_Population16yearsandover_Inlaborforce_Civilianlaborforce);
             var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Number of Civilian Employed Workers (" + item['YEAR'] + "): <br><b style='color:#070504; font-size:14px;'>" + item['ESTIMATE_EMPLOYMENTSTATUS_Population16yearsandover_Inlaborforce_Civilianlaborforce'] + " </b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
             var colorscale_color = color_dict['Emrld'];
@@ -1278,7 +1275,7 @@ app.clientside_callback(
         if (selected_measure == 'Population') {
             var z_array = my_array.map(({ESTIMATE_SEXANDAGE_Totalpopulation}) => ESTIMATE_SEXANDAGE_Totalpopulation);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_SEXANDAGE_Totalpopulation'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             
@@ -1290,7 +1287,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("_HISPANICLATINO_")){
                 var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_HispanicorLatinoofanyrace}) => ESTIMATE_RACE_Totalpopulation_HispanicorLatinoofanyrace);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Hispanic/Latino Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_HispanicorLatinoofanyrace'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
                 var colorscale_color = color_dict['deep'];
@@ -1302,7 +1299,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("_ASIAN_")){
                 var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_Onerace_Asian}) => ESTIMATE_RACE_Totalpopulation_Onerace_Asian);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Asian Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_Onerace_Asian'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
                 var colorscale_color = color_dict['deep'];
@@ -1314,7 +1311,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("_INDIGENOUS_")){
                 var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_Onerace_AmericanIndianandAlaskaNative}) => ESTIMATE_RACE_Totalpopulation_Onerace_AmericanIndianandAlaskaNative);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Total American Indian and Alaska Native Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_Onerace_AmericanIndianandAlaskaNative'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
                 var colorscale_color = color_dict['deep'];
@@ -1326,7 +1323,7 @@ app.clientside_callback(
             if (selected_submeasure != undefined && selected_submeasure.includes("_NATIVEHAWAIIANPACIFICISLANDER_")){
                 var z_array = my_array.map(({ESTIMATE_RACE_Totalpopulation_Onerace_NativeHawaiianandOtherPacificIslander}) => ESTIMATE_RACE_Totalpopulation_Onerace_NativeHawaiianandOtherPacificIslander);
                 var strings = my_array.map(function(item) {
-                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                    return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                     + "<span style='font-family: Trebuchet MS, sans-serif;'>Total Native Hawaiian and Pacific Islander Population (" + item['YEAR'] + "): <br><b style='color:rgb(62, 108, 150); font-size:14px;'>" + item['ESTIMATE_RACE_Totalpopulation_Onerace_NativeHawaiianandOtherPacificIslander'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
                 });
                 var colorscale_color = color_dict['deep'];
@@ -1343,7 +1340,7 @@ app.clientside_callback(
         if (selected_measure == 'Education') {
             var z_array = my_array.map(({ESTIMATE_TOTAL_CITIZENSHIPSTATUS}) => ESTIMATE_TOTAL_CITIZENSHIPSTATUS);
             var strings = my_array.map(function(item) {
-                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + city_string + "<br><br>"
+                return "<b style='font-size:16px;'>" + item['TRACT'] + "</b><br>" + "<span style='font-family: Trebuchet MS, sans-serif;'>" + item['CITY'] + ", " + item['COUNTY'] + "</span>" + "<br><br>"
                 + "<span style='font-family: Trebuchet MS, sans-serif;'>Total 25 and Older Population (" + item['YEAR'] + "): <br><b style='color:#070504; font-size:14px;'>" + item['ESTIMATE_TOTAL_CITIZENSHIPSTATUS'] + "</b></span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br><extra></extra>";
             });
             var colorscale_color = color_dict['Emrld'];
